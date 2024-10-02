@@ -15,7 +15,8 @@ Installation
 ```pip install torch-scatter``` 
 3. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
 4. to run:
-```python launch.py --config custom/threestudio-magicclay/configs/magicclay-sd.yaml --gpu 7 --train "system.implicit.system.prompt_processor.prompt=a 3d model of a minotaur in t-pose" \
+```
+python launch.py --config custom/threestudio-magicclay/configs/magicclay-sd.yaml --gpu 7 --train "system.implicit.system.prompt_processor.prompt=a 3d model of a minotaur in t-pose" \
 "system.explicit.system.geometry.allowed_vertices_path=custom/threestudio-magicclay/demo_data/textured_man/allowed_vertices_ids.txt" \
 "system.explicit.system.geometry.initial_mesh_path=custom/threestudio-magicclay/demo_data/textured_man/base_mesh.obj" \
 "system.explicit.system.geometry.initial_mtl_path=custom/threestudio-magicclay/demo_data/textured_man/base_mesh.mtl" \
