@@ -3,7 +3,7 @@
 
 [Project Page](https://amirbarda.github.io/MagicClay.github.io/) | [Paper](https://arxiv.org/pdf/2403.02460.pdf) |
 
-This is the official implementation of MagicClay, in the form of a [Threestudio](https://github.com/threestudio-project/threestudio) plugin.
+This is the official implementation of MagicClay. For ease of use, it is implemeneted as a [Threestudio](https://github.com/threestudio-project/threestudio) extension.
 
 ![alt text](https://github.com/amir90/MagicClay/blob/main/assets/teaser.png?raw=true)
 
@@ -15,8 +15,9 @@ This is the official implementation of MagicClay, in the form of a [Threestudio]
 Installation
 
 1. follow the installation instruction for [Threestudio](https://github.com/threestudio-project/threestudio)
-2. install the following: <br/>
+3. install the following: <br/>
 ```pip install torch-scatter```<br/>
 ```pip install cyobj```<br/>
+3. put the threestudio-magicclay folder in this repo in the 'custom' folder in the main Threestudio installation.
 4. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
 5. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
