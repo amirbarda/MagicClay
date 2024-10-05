@@ -16,6 +16,8 @@ Installation
 
 1. follow the installation instruction for [Threestudio](https://github.com/threestudio-project/threestudio)
 2. install torch-scatter
-```pip install torch-scatter``` 
-3. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
-4. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
+```pip install torch-scatter```
+install cyobj
+```pip install cyobj```
+4. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
+5. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
