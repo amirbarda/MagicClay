@@ -15,9 +15,8 @@ This is the official implementation of MagicClay, in the form of a [Threestudio]
 Installation
 
 1. follow the installation instruction for [Threestudio](https://github.com/threestudio-project/threestudio)
-2. install torch-scatter
-```pip install torch-scatter```
-install cyobj
-```pip install cyobj```
+2. install the following: <br/>
+```pip install torch-scatter```<br/>
+```pip install cyobj```<br/>
 4. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
 5. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
