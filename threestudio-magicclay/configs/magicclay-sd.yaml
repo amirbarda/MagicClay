@@ -1,0 +1,185 @@
+name: "sculpting"
+tag:  "${rmspace:${system.implicit.system.prompt_processor.prompt},_}"
+exp_root_dir: "sensei-fs-link/outputs"
+seed: 0
+
+
+data_type: "hybrid-random-camera-datamodule"
+data:
+  implicit: 
+    data_type: "random-camera-datamodule"
+    data:
+      batch_size: 4
+      width: 128
+      height: 128
+      eval_height: 512
+      eval_width: 512
+      camera_distance_range: [2.0,2.5] #[1.5, 2.0]
+      fovy_range: [40, 70]
+      elevation_range: [-10, 90]
+      light_sample_strategy: "dreamfusion"
+      eval_camera_distance: 2.5
+      eval_fovy_deg: 70.
+      batch_uniform_azimuth: True
+  explicit:
+    data_type: "random-camera-datamodule"
+    data:
+        batch_size: 4
+        width: 512
+        height: 512
+        eval_width: 512
+        eval_height: 512
+        camera_distance_range: [1.5,2.5]
+        fovy_range: [40, 70]
+        elevation_range: [-10, 90]
+        light_sample_strategy: "dreamfusion"
+        eval_camera_distance: 2.5
+        eval_fovy_deg: 70.
+        batch_uniform_azimuth: True
+
+system_type: "threestudio-magicclay"
+system:
+  geometry:
+    radius : 2.0
+  implicit: 
+    system:
+      geometry_type: "magicclay-implicit-sdf"
+      geometry:
+        radius: ${system.geometry.radius}
+        normal_type: finite_difference
+        # progressive eps from Neuralangelo
+        #finite_difference_normal_eps: progressive
+        sdf_bias : "mesh:custom/threestudio-magicclay/demo_data/textured_man/base_mesh.obj" #"mesh:meshes/armadillo.obj" # #"mesh:meshes/sphere_5120.obj"
+        initial_steps: 800
+
+      material_type: "magicclay-diffuse-with-point-light-material"
+      material:
+        textureless_prob: 0
+        ambient_only_steps: 2001
+        albedo_activation: sigmoid
+
+      background_type: "neural-environment-map-background"
+      background:
+        color_activation: sigmoid
+
+      renderer_type: "neus-volume-renderer2"
+      renderer:
+        radius: ${system.geometry.radius}
+        num_samples_per_ray: 512
+        cos_anneal_end_steps: ${trainer.max_steps}
+        eval_chunk_size: 8192
+
+      prompt_processor_type: "stable-diffusion-prompt-processor"
+      prompt_processor:
+        pretrained_model_name_or_path: "runwayml/stable-diffusion-v1-5"
+        prompt: ???
+
+      guidance_type: "stable-diffusion-guidance"
+      guidance:
+        pretrained_model_name_or_path: "runwayml/stable-diffusion-v1-5"
+        guidance_scale: 100.
+        max_step_percent: 0.5
+        weighting_strategy: fantasia3d
+      
+      loss:
+        lambda_sds: 1.
+        lambda_vsd: 1.
+        lambda_lora: 1.
+        lambda_normal: 1. #10
+        lambda_rgb: 0.1
+        lambda_orient: 0.0
+        lambda_sparsity: 0.0
+        lambda_opaque: 0.0
+        lambda_eikonal: 1000.
+        lambda_z_variance: 0.0
+
+      optimizer:
+        name: Adam
+        args:
+          betas: [0.9, 0.99]
+          eps: 1.e-15
+        params:
+          geometry.encoding:
+            lr: 0.01
+          geometry.sdf_network:
+            lr: 0.001
+          geometry.feature_network:
+            lr: 0.001
+          background:
+            lr: 0.001
+          renderer:
+            lr: 0.001
+
+  explicit:
+    system:
+      geometry_type: "dynamic-mesh"
+      geometry:
+        config_path: "custom/threestudio-magicclay/ROAR/configs/sculpting.cfg"
+        initial_mesh_path: "custom/threestudio-magicclay/demo_data/textured_man/base_mesh.obj"
+        initial_mtl_path: "custom/threestudio-magicclay/demo_data/textured_man/base_mesh.mtl"
+        initial_fit_steps: 300
+        allowed_vertices_path: "custom/threestudio-magicclay/demo_data/textured_man/allowed_vertices_ids.txt"
+        encode_initial_mtl: True
+
+      material_type: "magicclay-diffuse-with-point-light-material"
+      material:
+        textureless_prob: 0
+        ambient_only_steps: 2001
+
+      background_type: "solid-color-background"
+      background:
+        color: [0,0,0]
+
+      renderer_type: "magicclay-nvdiff-rasterizer"
+      renderer:
+        context_type: cuda
+
+      prompt_processor_type: "stable-diffusion-prompt-processor"
+      prompt_processor:
+        pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-1-base"
+        prompt: ${system.implicit.system.prompt_processor.prompt}
+
+      guidance_type: "stable-diffusion-vsd-guidance"
+      guidance:
+        pretrained_model_name_or_path: "stabilityai/stable-diffusion-2-1-base"
+        pretrained_model_name_or_path_lora: "stabilityai/stable-diffusion-2-1"
+        guidance_scale: 7.5
+        min_step_percent: 0.02
+        max_step_percent: [5000, 0.98, 0.5, 5001] # annealed to 0.5 after 5000 steps
+
+      loss:
+        lambda_normal: 0.1
+        lambda_rgb: 0.1
+        lambda_vsd: 1.
+        lambda_lora: 1.
+        lambda_smoothness: 1.0 #0.1
+        lambda_sds: 1.
+        lambda_feature_consistency: 1.
+        lambda_render_consistancy: [0, 10., 1000., 5000]
+        lambda_freeze: 1000.
+
+      # not used (ROAR's mesh optimizer is used instead)
+      optimizer:
+        name: Adam
+        args:
+          lr: 0.01
+          betas: [0.9, 0.99]
+          eps: 1.e-15
+        params:
+          geometry:
+            lr: 0.01
+          background:
+            lr: 0.001
+
+trainer:
+  max_steps: 10000
+  log_every_n_steps: 20
+  num_sanity_val_steps: 0
+  val_check_interval: 200
+  enable_progress_bar: true
+  precision: 32 #16-mixed
+
+checkpoint:
+  save_last: true # save at each validation time
+  save_top_k: -1
+  every_n_train_steps: ${trainer.max_steps}
