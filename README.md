@@ -8,6 +8,9 @@ This is the official implementation of MagicClay, in the form of a [Threestudio]
 ![alt text](https://github.com/amir90/MagicClay/blob/main/assets/teaser.png?raw=true)
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/O4WQlJ_m_XE/0.jpg)](https://www.youtube.com/watch?v=O4WQlJ_m_XE)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/_qA_5K4QNtg/0.jpg)](https://www.youtube.com/watch?v=_qA_5K4QNtg)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/e6vkxpVnsdI/0.jpg)](https://www.youtube.com/watch?v=e6vkxpVnsdI)
+
 
 Installation
 
