@@ -1,12 +1,13 @@
 # MagicClay: Sculpting Meshes with Generative Neural Fields
 
 
-[Project Page](https://amir90.github.io/MagicClay.github.io/) | [Paper](https://arxiv.org/pdf/2403.02460.pdf) |
+[Project Page](https://amirbarda.github.io/MagicClay.github.io/) | [Paper](https://arxiv.org/pdf/2403.02460.pdf) |
 
 This is the official implementation of MagicClay, in the form of a [Threestudio](https://github.com/threestudio-project/threestudio) plugin.
 
 ![alt text](https://github.com/amir90/MagicClay/blob/main/assets/teaser.png?raw=true)
 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/O4WQlJ_m_XE/0.jpg)](https://www.youtube.com/watch?v=O4WQlJ_m_XE)
 
 Installation
 
