@@ -1,6 +1,6 @@
-name: "sculpting"
+name: "MagicClay"
 tag:  "${rmspace:${system.implicit.system.prompt_processor.prompt},_}"
-exp_root_dir: "sensei-fs-link/outputs"
+exp_root_dir: "outputs"
 seed: 0
 
 
