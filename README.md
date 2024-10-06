@@ -19,6 +19,6 @@ Installation
 ```pip install torch-scatter```<br/>
 ```pip install cyobj```<br/>
 ```pip install ConfigArgParse```<br/>
-3. put the threestudio-magicclay folder in this repo in the 'custom' folder in the main Threestudio installation.
+3. git clone in to the 'custom' folder in the main Threestudio installation.
 4. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
 5. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
