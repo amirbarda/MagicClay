@@ -12,7 +12,8 @@ This is the official implementation of MagicClay. For ease of use, it is impleme
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/e6vkxpVnsdI/0.jpg)](https://www.youtube.com/watch?v=e6vkxpVnsdI)
 
 
-Installation
+### MagicClay: Sculpting Meshes with Generative Neural Fields
+
 
 1. follow the installation instruction for [Threestudio](https://github.com/threestudio-project/threestudio)
 3. install the following: <br/>
