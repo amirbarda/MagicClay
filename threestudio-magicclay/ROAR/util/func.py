@@ -5,7 +5,7 @@ import numpy as np
 from pathlib import Path
 import trimesh
 import imageio
-import open3d as o3d
+#import open3d as o3d
 from .geometry_utils import calculate_vertex_normals
 from subprocess import check_call
 import math
