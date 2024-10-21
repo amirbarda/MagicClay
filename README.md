@@ -23,3 +23,13 @@ This is the official implementation of MagicClay. For ease of use, it is impleme
 3. put the threestudio-magicclay folder inside the 'custom' folder in the main Threestudio installation.
 4. download demo data [here](https://drive.google.com/drive/folders/1FT6CuIwp2qA9JKN2SA6mqg7jabMrbDaf?usp=sharing)
 5. put the demo data in a folder called demo_data in the threestudio-magicclay folder, to run the relevant demos in magicclay_demo.sh
+
+If you found this work helpful, please cite as:
+```
+@article{Barda24,
+title = {MagicClay: Sculpting Meshes With Generative Neural Fields},
+author = {Amir Barda and Vladimir G. Kim and Noam Aigerman and Amit H. Bermano and Thibault Groueix},
+year = {2024},
+journal = {SIGGRAPH Asia (Conference track)}}
+```
+
