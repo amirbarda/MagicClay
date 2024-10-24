@@ -9,7 +9,7 @@ data:
   implicit: 
     data_type: "random-camera-datamodule"
     data:
-      batch_size: 4
+      batch_size: 2 #can change to 4 if using A100-80GB
       width: 128
       height: 128
       eval_height: 512
@@ -24,7 +24,7 @@ data:
   explicit:
     data_type: "random-camera-datamodule"
     data:
-        batch_size: 4
+        batch_size: 2 #can change to 4 if using A100-80GB
         width: 512
         height: 512
         eval_width: 512
